@@ -29,4 +29,9 @@ public class IgniteConfirmManager {
     {
         igniteFacade.editTransaction(ire);
     }
+    
+    public IgnitePaymentConfirmRequest getPaymentConfirmationRequest(IgnitePaymentConfirmRequest ire)
+    {
+       return igniteFacade.findPaymentConfirm(ire.getPaymentSPId(), ire.getPaymentSPtransactionId());
+    }
 }

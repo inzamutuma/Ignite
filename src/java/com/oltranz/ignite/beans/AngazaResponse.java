@@ -11,26 +11,27 @@ import java.io.Serializable;
  *
  * @author ismaelnzamutuma
  */
+
 public class AngazaResponse implements Serializable {
- private String code;
+ private int code;
  private String customer;
  private String description;
- private String reference_number;
- private String payment_reference;
+ private int  reference_number;
  private String status;
+ private String payment_reference="";
  private String transaction_id;
 
     /**
      * @return the code
      */
-    public String getCode() {
+    public int getCode() {
         return code;
     }
 
     /**
      * @param code the code to set
      */
-    public void setCode(String code) {
+    public void setCode(int code) {
         this.code = code;
     }
 
@@ -65,14 +66,14 @@ public class AngazaResponse implements Serializable {
     /**
      * @return the reference_number
      */
-    public String getReference_number() {
+    public int getReference_number() {
         return reference_number;
     }
 
     /**
      * @param reference_number the reference_number to set
      */
-    public void setReference_number(String reference_number) {
+    public void setReference_number(int reference_number) {
         this.reference_number = reference_number;
     }
 
@@ -117,6 +118,7 @@ public class AngazaResponse implements Serializable {
     public void setPayment_reference(String payment_reference) {
         this.payment_reference = payment_reference;
     }
-    
+
+   
   
 }

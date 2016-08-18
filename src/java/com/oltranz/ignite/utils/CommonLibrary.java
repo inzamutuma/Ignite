@@ -7,6 +7,7 @@ package com.oltranz.ignite.utils;
 */
 
 
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -20,7 +21,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
-import javax.ws.rs.client.Client;
+
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.WebTarget;
@@ -200,16 +201,21 @@ public class CommonLibrary {
     
     */
     
+   
+    
     public static Response sendRESTRequest(String url,String requestStr, String MediaType, String method)
     {
         try
         {
             Response response=null;
-            Client client =ClientBuilder.newClient();
+            javax.ws.rs.client.Client client =ClientBuilder.newClient();
             WebTarget target =client.target(url);
             switch (method){
                 case "POST":
-                    response = target.request().header("Content-type", "text/xml").header("Signature", "43AD232FD45FF").post(Entity.entity(requestStr, MediaType));
+                    response = target.request().header("Content-type", "text/xml")
+                     .header("Signature", "43AD232FD45FF")
+                            
+                     .post(Entity.entity(requestStr, MediaType));
                     
                     break;
                     
@@ -229,6 +235,43 @@ public class CommonLibrary {
         
         
     }
+    
+ public static Response sendRESTRequestangaza(String url,String requestStr, String MediaType, String method)
+    {
+  
+        try
+        {
+            Response response=null;
+            javax.ws.rs.client.Client client =ClientBuilder.newClient();
+            WebTarget target =client.target(url);
+            switch (method){
+                case "POST":
+                    response = target.request().header("Content-type", "text/json; charset=utf-8")
+                     .header("X-Authorization", "c58c8761-4fa3-4267-85ba-90552ae4295b")
+                            
+                     .post(Entity.entity(requestStr, MediaType));
+                    
+                    break;
+                    
+                case "GET":
+                    response = target.request().get();
+                    break;
+                    
+            }
+            
+            return response;
+        }
+        catch(Exception e)
+        {
+            System.out.println("Error send request: "+e.getMessage());
+            return null;
+        }
+        
+        
+    }   
+    
+    
+    
     
     public static class shared
     {
@@ -487,5 +530,8 @@ public class CommonLibrary {
         }
         
     }
+    
+   
+    
     
 }

@@ -26,30 +26,39 @@ import javax.xml.bind.annotation.XmlTransient;
 @XmlRootElement(name="COMMAND")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class IgnitePaymentConfirmRequest  implements Serializable{
+@Id
     @XmlElement(name="paymentSPId")
-    @Id
     private Integer paymentSPId;
     @XmlElement(name="paymentSPtransactionId")
     @Id
-private String paymentSPtransactionId;
-    @XmlElement(name="senderId")
-    private String senderId;
+    private String paymentSPtransactionId;
+    @XmlElement(name="paymentSPaccountId")
+    private String paymentSPaccountId;
+    @XmlElement(name="paymentSPmerchantId")
+    private String paymentSPmerchantId;
    
-    @XmlElement(name="merchantContractId")
-    private String merchantContractId;
     @XmlElement(name="accountRef")
     private String accountRef;
     @XmlElement(name="paymentRef")
     private String paymentRef;
     @XmlElement(name="amount")
     private Integer amount;
+    @XmlElement(name="statusCode")
+    private Integer statusCode;
+    
+    
+    
    @XmlTransient
     private String status;
    @XmlTransient
    @Temporal(TemporalType.DATE)
    private java.util.Date transactionDate;
   @XmlTransient
-   private String paidOrganization;   
+   private String paidOrganization; 
+  @XmlTransient
+  private String marchantTransactionId;
+          
+          
     /**
      * @return the paymentSPId
      */
@@ -79,31 +88,31 @@ private String paymentSPtransactionId;
     }
 
     /**
-     * @return the senderId
+     * @return the paymentSPaccountId
      */
-    public String getSenderId() {
-        return senderId;
+    public String getPaymentSPaccountId() {
+        return paymentSPaccountId;
     }
 
     /**
-     * @param senderId the senderId to set
+     * @param paymentSPaccountId the paymentSPaccountId to set
      */
-    public void setSenderId(String senderId) {
-        this.senderId = senderId;
+    public void setPaymentSPaccountId(String paymentSPaccountId) {
+        this.paymentSPaccountId = paymentSPaccountId;
     }
 
     /**
-     * @return the merchantContractId
+     * @return the paymentSPmerchantId
      */
-    public String getMerchantContractId() {
-        return merchantContractId;
+    public String getPaymentSPmerchantId() {
+        return paymentSPmerchantId;
     }
 
     /**
-     * @param merchantContractId the merchantContractId to set
+     * @param paymentSPmerchantId the paymentSPmerchantId to set
      */
-    public void setMerchantContractId(String merchantContractId) {
-        this.merchantContractId = merchantContractId;
+    public void setPaymentSPmerchantId(String paymentSPmerchantId) {
+        this.paymentSPmerchantId = paymentSPmerchantId;
     }
 
     /**
@@ -189,6 +198,34 @@ private String paymentSPtransactionId;
     public void setPaidOrganization(String paidOrganization) {
         this.paidOrganization = paidOrganization;
     }
-    
+
+    /**
+     * @return the marchantTransactionId
+     */
+    public String getMarchantTransactionId() {
+        return marchantTransactionId;
+    }
+
+    /**
+     * @param marchantTransactionId the marchantTransactionId to set
+     */
+    public void setMarchantTransactionId(String marchantTransactionId) {
+        this.marchantTransactionId = marchantTransactionId;
+    }
+
+    /**
+     * @return the statusCode
+     */
+    public Integer getStatusCode() {
+        return statusCode;
+    }
+
+    /**
+     * @param statusCode the statusCode to set
+     */
+    public void setStatusCode(Integer statusCode) {
+        this.statusCode = statusCode;
+    }
+
     
 }
