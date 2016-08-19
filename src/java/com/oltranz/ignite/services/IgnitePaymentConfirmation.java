@@ -312,7 +312,17 @@ public class IgnitePaymentConfirmation {
                         imanager.editTransaction(confirmRequest);   
                         }
                         
-                        
+                      confirmBillPayment.setMerchantTransactionid(aresponse.getPayment_id());
+                    confirmBillPayment.setMessage(aresponse.getInfo().getSubscriber_message());
+                    confirmBillPayment.setNewbalance("0");
+                    
+                    confirmBillPayment.setRequestTime(sdf.format(new java.util.Date()));
+                    
+                    confirmBillPayment.setStatusCode(smap.getOltranzstatus());
+                    String confirmBillPaymentxml = CommonLibrary.marshalling(confirmBillPayment, BillPaymentCompletedRequest.class);
+                    System.out.println("CONFIRMATION RESPONSE FROM THE ISMAEL: "+confirmBillPaymentxml);
+                    CommonLibrary.sendRESTRequest(confirmUrl, confirmBillPaymentxml, MediaType.APPLICATION_XML, "POST");
+                   
                         
                     }
                     catch(Exception e)
@@ -330,9 +340,10 @@ public class IgnitePaymentConfirmation {
                     confirmBillPayment.setRequestTime(sdf.format(new java.util.Date()));
                     //  StatusesMap smap = statusmapFacade.findStatusMap(""+aresponse.getCode(), "ANGAZA");
                     
-                    confirmBillPayment.setStatusCode("404");
+                    confirmBillPayment.setStatusCode("402");
                     String confirmBillPaymentxml = CommonLibrary.marshalling(confirmBillPayment, BillPaymentCompletedRequest.class);
                     System.out.println("CONFIRMATION RESPONSE TO THE PAYMENT GATEWAY: "+confirmBillPaymentxml);
+                    CommonLibrary.sendRESTRequest(confirmUrl, confirmBillPaymentxml, MediaType.APPLICATION_XML, "POST");
                     
                     
                     //// other bill payments companies shall be added here

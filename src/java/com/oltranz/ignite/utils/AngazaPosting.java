@@ -66,11 +66,11 @@ public class AngazaPosting {
     
     public String sendAzurConfirmation(String url, String data,String method) 
     {
-          String urlpath ="http://localhost:8080/Ignite/payment/azurcertificate";
+          String urlpath ="http://10.171.1.50:8080/Ignite/payment/azurcertificate";
         System.out.println("in the send azur");
         String path = CommonLibrary.sendRESTRequest(urlpath, "", MediaType.TEXT_PLAIN, "GET").readEntity(String.class);
 
-   File f = new File(path+"/lib/Security/azurkeystore.jks");
+   File f = new File(path+"/lib/security/azurkeystore.jks");
        
    System.out.println(f.length());
    
@@ -102,7 +102,7 @@ public class AngazaPosting {
          }
          catch(Exception e)
          {
-             System.out.println("\n\n\n\n\n\n\n\n\n SSL Connection not established\n/n/n/n/n/n/n"+e.getMessage());
+             System.out.println(" SSL Connection not established"+e.getMessage());
          }
             
    // HttpsURLConnection con = (HttpsURLConnection) oURL.openConnection();
