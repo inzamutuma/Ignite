@@ -29,7 +29,9 @@ public class DlightManager {
                 dlrequest.setTransactionid(confirmRequest.getPaymentSPtransactionId());
                 dlrequest.setPayment_method("MOMO");
                 String dlightrequestjson = CommonLibrary.marshalling(dlrequest, DLightRequest.class, "json");
+               
                 Response response= CommonLibrary.sendRESTRequest(confirmurl, dlightrequestjson, MediaType.APPLICATION_JSON, "POST");
+                
                 String dlresponsejson = response.readEntity(String.class);
                 System.out.println("Response from DLight: " +dlresponsejson);
                 DLightResponse dlresponse = (DLightResponse)CommonLibrary.unmarshalling(dlresponsejson,DLightResponse.class, "json");
